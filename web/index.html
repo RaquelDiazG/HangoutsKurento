@@ -22,7 +22,7 @@ and open the template in the editor.
         <script src="angular.js"></script>
         <link href="csschat.css" rel="stylesheet">
         <script src="jschat.js"></script>
-        <script src="HTMLImports/html-imports.js"></script>
+        <!--<script src="HTMLImports/html-imports.js"></script>-->
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,183 +31,110 @@ and open the template in the editor.
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
 
+        <style>
+
+            .form-signin
+            {
+                max-width: 330px;
+                padding: 15px;
+                margin: 0 auto;
+            }
+            .form-signin .form-signin-heading, .form-signin .checkbox
+            {
+                margin-bottom: 10px;
+            }
+            .form-signin .checkbox
+            {
+                font-weight: normal;
+            }
+            .form-signin .form-control
+            {
+                position: relative;
+                font-size: 16px;
+                height: auto;
+                padding: 10px;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+            .form-signin .form-control:focus
+            {
+                z-index: 2;
+            }
+            /*            .form-signin input[type="text"]
+                        {
+                            margin-bottom: -1px;
+                            border-bottom-left-radius: 0;
+                            border-bottom-right-radius: 0;
+                        }*/
+            .form-signin input[type="text"]
+            {
+                margin-bottom: 10px;
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+            }
+            .account-wall
+            {
+                margin-top: 20px;
+                padding: 40px 0px 20px 0px;
+                background-color: #f7f7f7;
+                -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+                -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+                box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            }
+            .login-title
+            {
+                color: #555;
+                font-size: 18px;
+                font-weight: 400;
+                display: block;
+            }
+            .profile-img
+            {
+                width: 96px;
+                height: 96px;
+                margin: 0 auto 10px;
+                display: block;
+                -moz-border-radius: 50%;
+                -webkit-border-radius: 50%;
+                border-radius: 50%;
+            }
+            .need-help
+            {
+                margin-top: 10px;
+            }
+            .new-account
+            {
+                display: block;
+                margin-top: 10px;
+            }
+
+        </style>
     </head>
 
-    <body ng-controller="controllerHangouts" style="background:#5ea654">
+    <body ng-controller="controller1" style="background:#5ea654">
 
-        <!--<h1 class="text-center" ng-mouseleave="ShowHide()">HANGOUTS KURENTO</h1>-->
-
-        <!--<h1 class="text-center" >HANGOUTS KURENTO</h1>-->
-        <br/>
-
-        <div class="row">
-            <!--            <nav class="navbar navbar-inverse col-md-10 col-md-offset-1" role="navigation" ng-hide="optionsBar" >-->
-            <nav class="navbar navbar-inverse col-md-8 col-md-offset-2" role="navigation" ng-hide="optionsBar" >
-                <div class="container-fluid">
-                    <!--LOGO-->
-                    <div class="navbar-header">
-                        <img class="navbar-brand" src="img/kurento.png" alt="">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-4 col-md-offset-4">
+                    <h1 class="text-center login-title">Sign in </h1>
+                    <div class="account-wall">
+                        <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                             alt="">
+                        <form class="form-signin">
+                            <input type="text" class="form-control" placeholder="Name" id="name" required autofocus>
+                            <input type="text" class="form-control" placeholder="Room" id="room" required>
+                            <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="InsertParticipant()">
+                                Sign in</button>
+                            <!--                            <label class="checkbox pull-left">
+                                                            <input type="checkbox" value="remember-me">
+                                                            Remember me
+                                                        </label>-->
+                            <!--<a href="#" class="pull-right need-help">Need help? </a><span class="clearfix"></span>-->
+                        </form>
                     </div>
-                    <!--NAVBAR-->
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">    
-                        <ul class="nav navbar-nav" >
-                            <li class="active"><a href="#"><span class="glyphicon glyphicon-user"></span> Invitar</a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-remove"></span> Salir</a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-fullscreen"></span> Pantalla completa</a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-filter"></span> Filtro</a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</a></li>
-                        </ul>
-                        <!--CHAT-->
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="dropdown dropdown-large">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-comment"></span> Chat 
-                                    <b class="caret"></b>
-
-                                </a>
-
-                                <ul class="dropdown-menu dropdown-menu-large row">
-                                    <li class="col-sm-12">
-                                        <div class="panel-body">
-                                            <ul class="chat">
-                                                <li class="left clearfix"><span class="chat-img pull-left">
-                                                        <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
-                                                    </span>
-                                                    <div class="chat-body clearfix">
-                                                        <div class="header">
-                                                            <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
-                                                                <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
-                                                        </div>
-                                                        <p>
-                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                                            dolor, quis ullamcorper ligula sodales.
-                                                        </p>
-                                                    </div>
-                                                </li>
-                                                <li class="right clearfix"><span class="chat-img pull-right">
-                                                        <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" />
-                                                    </span>
-                                                    <div class="chat-body clearfix">
-                                                        <div class="header">
-                                                            <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
-                                                            <strong class="pull-right primary-font">Bhaumik Patel</strong>
-                                                        </div>
-                                                        <p>
-                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                                            dolor, quis ullamcorper ligula sodales.
-                                                        </p>
-                                                    </div>
-                                                </li>
-                                                <li class="left clearfix"><span class="chat-img pull-left">
-                                                        <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
-                                                    </span>
-                                                    <div class="chat-body clearfix">
-                                                        <div class="header">
-                                                            <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
-                                                                <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
-                                                        </div>
-                                                        <p>
-                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                                            dolor, quis ullamcorper ligula sodales.
-                                                        </p>
-                                                    </div>
-                                                </li>
-                                                <li class="right clearfix"><span class="chat-img pull-right">
-                                                        <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" />
-                                                    </span>
-                                                    <div class="chat-body clearfix">
-                                                        <div class="header">
-                                                            <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago</small>
-                                                            <strong class="pull-right primary-font">Bhaumik Patel</strong>
-                                                        </div>
-                                                        <p>
-                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                                            dolor, quis ullamcorper ligula sodales.
-                                                        </p>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="panel-footer">
-                                            <div class="input-group">
-                                                <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
-                                                <span class="input-group-btn">
-                                                    <button class="btn btn-warning btn-sm" id="btn-chat">
-                                                        Send</button>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-
+                    <!--<a href="#" class="text-center new-account">Create an account </a>-->
                 </div>
-            </nav>
-        </div>
-
-
-        <!--VIDEO-->
-
-        <div class="row">
-            <div class="carousel slide article-slide center-block" id="article-photo-carousel">
-
-                <!--Wrapper for slides--> 
-                <div class="carousel-inner cont-slider">
-
-                    <div class="item active ">
-                        <video height="90%" width="90%" class="center-block">
-                            <source src="https://www.youtube.com/watch?v=2c-n8xw1M_A&list=UUFtGhWYqahVlzMgGNtEmKug" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                    <div class="item ">
-                        <video height="90%" width="90%" class="center-block">
-                            <source src="movie.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                    <div class="item">
-                        <video height="90%" width="90%"class="center-block">
-                            <source src="movie.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                    <div class="item ">
-                        <video  height="90%" width="90%"class="center-block">
-                            <source src="movie.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                </div>
-                <!--Indicators--> 
-
-                <ol class="carousel-indicators">
-                    <li class="active" data-slide-to="0" data-target="#article-photo-carousel">
-                        <video>
-                            <source src="movie.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </li>
-                    <li class="" data-slide-to="1" data-target="#article-photo-carousel">
-                        <video >
-                            <source src="movie.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </li>
-                    <li class="" data-slide-to="2" data-target="#article-photo-carousel">
-                        <video >
-                            <source src="movie.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </li>
-                    <li class="" data-slide-to="3" data-target="#article-photo-carousel">
-                        <video >
-                            <source src="movie.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </li>
-                </ol>
             </div>
         </div>
 
