@@ -8,7 +8,7 @@
 var app=angular.module("app",[]);
 
 app.service('sharedProperties', function () {
-        var participants=[];
+        var participants=[{idParticipant:0, name:"Participante 0", room: "3"},{idParticipant:1, name:"Participante 1", room: "3"},{idParticipant:2, name:"Participante 2", room: "3"}];
         console.log("SERVICIO INICIADO");
         return {
             getParticipants: function () {
@@ -54,13 +54,10 @@ app.controller("controller1",function($scope,$window, sharedProperties){
       var room = document.getElementById('room').value;
 //      $scope.participants.push(this.idParticipant=ID,this.name=name,this.room=room);
 
-console.log("PARTICIPANTES antes :" + sharedProperties.getParticipants().toString());
+      console.log("PARTICIPANTES antes :" + sharedProperties.getParticipants().toString());
       var p= sharedProperties.getParticipants();
       p.push(this.idParticipant=ID,this.name=name,this.room=room);
-//      console.log("P "+p);  
-console.log("PARTICIPANTES despues de insertar:" + sharedProperties.getParticipants().toString());
-//sharedProperties.setParticipants(p);
-//console.log("PARTICIPANTES despues de setear:" + sharedProperties.getParticipants().toString());
+      console.log("PARTICIPANTES despues de insertar:" + sharedProperties.getParticipants().toString());
       console.log("Participante insertado: " + this.idParticipant + this.name + this.room);
       ID=ID+1;
       $window.location.href = 'call.html';
@@ -78,8 +75,8 @@ app.controller("controller2",function($scope,$window,sharedProperties){
 //      $scope.participants.pop(index);
       sharedProperties.getParticipants().pop(index);
       console.log("PARTICIPANTES despues de eliminar:" + sharedProperties.getParticipants().toString());
-      ID=ID+1;
-//      $window.location.href = 'login.html';
+      
+      $window.location.href = 'index.html';
   };
   
   
