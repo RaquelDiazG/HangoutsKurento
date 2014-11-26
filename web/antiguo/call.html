@@ -4,7 +4,6 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<!DOCTYPE html>
 <html ng-app="app">
     <head>
         <meta charset="utf-8">
@@ -54,7 +53,15 @@ and open the template in the editor.
                             <li class="active"><a href="#"><span class="glyphicon glyphicon-user"></span> Invitar</a></li>
                             <li ng-click="DeleteParticipant()"><a href="#"><span class="glyphicon glyphicon-remove"></span> Salir</a></li>
                             <li><a href="#"><span class="glyphicon glyphicon-fullscreen"></span> Pantalla completa</a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-filter"></span> Filtro</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-filter"></span> Filtro <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Filtro 1</a></li>
+                                    <li><a href="#">Filtro 2</a></li>
+                                    <li><a href="#">Filtro 3</a></li>
+                                    <li><a href="#">Filtro 4</a></li>
+                                </ul>
+                            </li>
                             <li><a href="#"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">

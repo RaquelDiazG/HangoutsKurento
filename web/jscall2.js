@@ -5,7 +5,7 @@
  */
 
             $(document).ready(function () {
-
+$('[id=carousel-selector-0').addClass('selected');
                 // handles the carousel thumbnails
                 $('[id^=carousel-selector-]').click(function () {
                     var id_selector = $(this).attr("id");
@@ -16,11 +16,11 @@
                     $(this).addClass('selected');
                 });
 
-                // when the carousel slides, auto update
-                $('#myCarousel').on('slid', function (e) {
-                    var id = $('.item.active').data('slide-number');
-                    id = parseInt(id);
-                    $('[id^=carousel-selector-]').removeClass('selected');
-                    $('[id=carousel-selector-' + id + ']').addClass('selected');
-                });
+//                // when the carousel slides, auto update
+//                $('#myCarousel').on('slid', function (e) {
+//                    var id = $('.item.active').data('slide-number');
+//                    id = parseInt(id);
+//                    $('[id^=carousel-selector-]').removeClass('selected');
+//                    $('[id=carousel-selector-' + id + ']').addClass('selected');
+//                });
             });

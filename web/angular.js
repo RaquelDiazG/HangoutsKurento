@@ -7,6 +7,7 @@
 
 var app=angular.module("app",[]);
 
+
 app.service('sharedProperties', function () {
         var participants=[{idParticipant:0, name:"Participante 0", room: "3"},{idParticipant:1, name:"Participante 1", room: "3"},{idParticipant:2, name:"Participante 2", room: "3"}];
         console.log("SERVICIO INICIADO");
@@ -60,13 +61,20 @@ app.controller("controller1",function($scope,$window, sharedProperties){
       console.log("PARTICIPANTES despues de insertar:" + sharedProperties.getParticipants().toString());
       console.log("Participante insertado: " + this.idParticipant + this.name + this.room);
       ID=ID+1;
-      $window.location.href = 'call.html';
+      $window.location.href = 'call2.html';
   };
   });
   
 app.controller("controller2",function($scope,$window,sharedProperties){
     console.log("CONTROLADOR 2 INICIADO");
-  $scope.DeleteParticipant=function(){
+    console.log("PARTICIPANTES:" + sharedProperties.getParticipants().toString());
+    
+    $scope.lista=[{idParticipant:0, name:"Participante 0", room: "3", video:"http://www.youtube.com/v/QoQ1Xoo_rwk"},
+                  {idParticipant:1, name:"Participante 1", room: "3", video:"https://www.youtube.com/v/2c-n8xw1M_A&list=UUFtGhWYqahVlzMgGNtEmKug"},
+                  {idParticipant:2, name:"Participante 2", room: "3", video:"https://www.youtube.com/v/yJAQs23eoXw&list=UUFtGhWYqahVlzMgGNtEmKug"}];
+//    console.log("LISTA:" + $scope.lista.getParticipants().toString());
+  
+    $scope.DeleteParticipant=function(){
       
         console.log("PARTICIPANTES antes:" + sharedProperties.getParticipants().toString());
         

@@ -10,14 +10,22 @@
         <!-- Bootstrap -->
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
 
-        <link href="csscall2.css" rel="stylesheet">
-        <script src="jscall2.js"></script>
+
         <!--AngularJS-->
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
         <script src="angular.js"></script>
         <link href="csschat.css" rel="stylesheet">
         <script src="jschat.js"></script>
+
+        <!--angular+bootstrap-->
+        <!--<script src="ui-bootstrap-tpls-0.12.0.min.js"></script>-->
+
+
+        <link href="csscall2.css" rel="stylesheet">
+        <script src="jscall2.js"></script>
+
         <!--<script src="HTMLImports/html-imports.js"></script>-->
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -36,6 +44,7 @@
         <!--<h1 class="text-center" >HANGOUTS KURENTO</h1>-->
         <br/>
 
+        <!--NAVBAR-->
         <div class="row">
             <!--            <nav class="navbar navbar-inverse col-md-10 col-md-offset-1" role="navigation" ng-hide="optionsBar" >-->
             <nav class="navbar navbar-inverse col-md-6 col-md-offset-3" role="navigation" ng-hide="optionsBar" >
@@ -50,7 +59,17 @@
                             <li class="active"><a href="#"><span class="glyphicon glyphicon-user"></span> Invitar</a></li>
                             <li ng-click="DeleteParticipant()"><a href="#"><span class="glyphicon glyphicon-remove"></span> Salir</a></li>
                             <li><a href="#"><span class="glyphicon glyphicon-fullscreen"></span> Pantalla completa</a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-filter"></span> Filtro</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-filter"></span> Filtro <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Filtro 1</a></li>
+                                    <li><a href="#">Filtro 2</a></li>
+                                    <li><a href="#">Filtro 3</a></li>
+                                    <li><a href="#">Filtro 4</a></li>
+                                </ul>
+                            </li>
+
+
                             <li><a href="#"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</a></li>
                         </ul>
 
@@ -63,74 +82,53 @@
 
         <!--VIDEO-->
         <!-- thumb navigation carousel -->
-        <div class="col-md-12 hidden-sm hidden-xs" id="slider-thumbs">
+        PARTICIPANTES = {{lista.length}}
 
+        <div class="col-md-12 hidden-sm hidden-xs" id="slider-thumbs">
             <!-- thumb navigation carousel items -->
             <ul class="list-inline">
-                <li> <a id="carousel-selector-0" class="selected">
-                        <iframe width="100px" height="50px" src="http://www.youtube.com/v/QoQ1Xoo_rwk">
-                        </iframe>
-                    </a></li>
-                <li> <a id="carousel-selector-1">
-                        <video class="small-video">
-                            <source  src="#" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </a></li>
-                <li> <a id="carousel-selector-2">
-                        <video class="small-video">
-                            <source  src="#" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </a></li>
-                <li> <a id="carousel-selector-3">
-                        <video class="small-video">
-                            <source  src="#" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </a></li>
-                <li> <a id="carousel-selector-4">
-                        <video class="small-video">
-                            <source  src="#" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </a></li>
-                <li> <a id="carousel-selector-5">
-                        <video class="small-video">
-                            <source  src="#" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </a></li>
-                <li> <a id="carousel-selector-6">
-                        <video class="small-video">
-                            <source  src="#" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </a></li>
-                <li> <a id="carousel-selector-7">
-                        <video class="small-video">
-                            <source  src="#" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </a></li>
-                <li> <a id="carousel-selector-8">
-                        <video class="small-video">
-                            <source  src="#" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </a></li>
-                <li> <a id="carousel-selector-9">
-                        <video class="small-video">
-                            <source  src="#" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </a></li>
-                <li> <a id="carousel-selector-10">
-                        <video class="small-video">
-                            <source  src="#" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </a></li>
+                <li ng-repeat="p in lista"> 
+                    <div ng-switch="p.idParticipant">
+                        {{p.idParticipant}}
+                        <div ng-switch-when="0">
+                            <a id="carousel-selector-{{p.idParticipant}}" class="selected">
+                                <video class="small-video">
+                                    <source  src="#" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </a>
+                        </div>
+                        <div ng-switch-default>
+                            <a id="carousel-selector-{{p.idParticipant}}" >
+                                <video class="small-video">
+                                    <source  src="#" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </a>
+                        </div>
+                    </div>
+
+                </li>
+
+
+
+                <!--                <li> <a id="carousel-selector-0" class="selected">
+                                        <iframe width="100px" height="50px" src="http://www.youtube.com/v/QoQ1Xoo_rwk">
+                                        </iframe>
+                                    </a></li>
+                                <li> <a id="carousel-selector-1">
+                                        <video class="small-video">
+                                            <source  src="#" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </a></li>
+                                <li> <a id="carousel-selector-2">
+                                        <video class="small-video">
+                                            <source  src="#" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </a></li>
+                -->
             </ul>
 
         </div>
@@ -144,79 +142,58 @@
                     <div id="myCarousel" class="carousel slide">
                         <!-- main slider carousel items -->
                         <div class="carousel-inner">
-                            <div class="active item" data-slide-number="0">
+
+                            <!--                            <div ng-repeat="p in lista">
+                                                            <div ng-switch="p.idParticipant">
+                                                                {{p.idParticipant}}
+                                                                <div ng-switch-when="0">
+                                                                    <div class="active item" data-slide-number="{{p.idParticipant}}">
+                                                                        <iframe width="100%" height="465px" src="http://www.youtube.com/v/QoQ1Xoo_rwk">
+                                                                        </iframe> 
+                                                                    </div>
+                                                                </div>
+                                                                <div ng-switch-default>
+                                                                    <div class="item" data-slide-number="{{p.idParticipant}}">
+                                                                        <video class="center-block big-video">
+                                                                            <source src="#" type="video/mp4">
+                                                                            Your browser does not support the video tag.
+                                                                        </video>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>-->
+                            <div ng-repeat="p in lista" class="{{p.idParticipant === 0 && 'active item'||'item'}}" data-slide-number="{{p.idParticipant}}">
                                 <iframe width="100%" height="465px" src="http://www.youtube.com/v/QoQ1Xoo_rwk">
                                 </iframe>
                             </div>
-                            <div class="item" data-slide-number="1">
-                                <video class="center-block big-video">
-                                    <source src="#" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                            </div>
-                            <div class="item" data-slide-number="2">
-                                <video class="center-block big-video">
-                                    <source src="#" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                            </div>
-                            <div class="item" data-slide-number="3">
-                                <video class="center-block big-video">
-                                    <source src="#" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                            </div>
-                            <div class="item" data-slide-number="4">
-                                <video class="center-block big-video">
-                                    <source src="#" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                            </div>
-                            <div class="item" data-slide-number="5">
-                                <video class="center-block big-video">
-                                    <source src="#" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                            </div>
-                            <div class="item" data-slide-number="6">
-                                <video class="center-block big-video">
-                                    <source src="#" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                            </div>
-                            <div class="item" data-slide-number="7">
-                                <video class="center-block big-video">
-                                    <source src="#" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                            </div>
-                            <div class="item" data-slide-number="8">
-                                <video class="center-block big-video">
-                                    <source src="#" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                            </div>
-                            <div class="item" data-slide-number="9">
-                                <video class="center-block big-video">
-                                    <source src="#" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                            </div>
-                            <div class="item" data-slide-number="10">
-                                <video class="center-block big-video">
-                                    <source src="#" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                            </div>
-                        </div>
-                        <!-- main slider carousel nav controls --> <a class="carousel-control left" href="#myCarousel" data-slide="prev">‹</a>
 
-                        <a class="carousel-control right" href="#myCarousel" data-slide="next">›</a>
+
+                            <!--                            <div class="active item" data-slide-number="0">
+                                                            <iframe width="100%" height="465px" src="http://www.youtube.com/v/QoQ1Xoo_rwk">
+                                                            </iframe>
+                                                        </div>
+                                                        <div class="item" data-slide-number="1">
+                                                            <video class="center-block big-video">
+                                                                <source src="#" type="video/mp4">
+                                                                Your browser does not support the video tag.
+                                                            </video>
+                                                        </div>
+                                                        <div class="item" data-slide-number="2">
+                                                            <video class="center-block big-video">
+                                                                <source src="#" type="video/mp4">
+                                                                Your browser does not support the video tag.
+                                                            </video>
+                                                        </div>-->
+
+
+                            <!-- main slider carousel nav controls --> 
+                            <a class="carousel-control left" href="#myCarousel" data-slide="prev">‹</a>
+
+                            <a class="carousel-control right" href="#myCarousel" data-slide="next">›</a>
+                        </div>
                     </div>
                 </div>
-
             </div>
-
             <!--CHAT-->
             <div class="col col-md-3">
 
@@ -302,6 +279,7 @@
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <!--<script src="bootstrap/js/bootstrap.min.js"></script>-->
+
     </body>
 </html>
