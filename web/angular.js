@@ -70,8 +70,8 @@ app.controller("controller2",function($scope,$window,sharedProperties){
     console.log("PARTICIPANTES:" + sharedProperties.getParticipants().toString());
     
     $scope.lista=[{idParticipant:0, name:"Participante 0", room: "3", video:"http://www.youtube.com/v/QoQ1Xoo_rwk"},
-                  {idParticipant:1, name:"Participante 1", room: "3", video:"https://www.youtube.com/v/2c-n8xw1M_A&list=UUFtGhWYqahVlzMgGNtEmKug"},
-                  {idParticipant:2, name:"Participante 2", room: "3", video:"https://www.youtube.com/v/yJAQs23eoXw&list=UUFtGhWYqahVlzMgGNtEmKug"}];
+                  {idParticipant:1, name:"Participante 1", room: "3", video:"http://www.youtube.com/v/UUFtGhWYqahVlzMgGNtEmKug"},
+                  {idParticipant:2, name:"Participante 2", room: "3", video:"http://www.youtube.com/v/UUFtGhWYqahVlzMgGNtEmKug"}];
 //    console.log("LISTA:" + $scope.lista.getParticipants().toString());
   
     $scope.DeleteParticipant=function(){

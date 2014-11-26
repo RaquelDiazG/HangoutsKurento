@@ -8,13 +8,13 @@ and open the template in the editor.
     Author     : raquel
 */
 
-.selected img {
-                opacity:0.5;
-            }
-            .big-video {
-                width:100%;
-            }
-            .small-video {
-                width:100px;
-                
-            }
+.selected video {
+    opacity:0.5;
+    border: 2px solid #FFFFFF;
+}
+.big-video {
+    width:100%;
+}
+.small-video {
+    width:100px;
+}

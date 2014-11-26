@@ -58,7 +58,7 @@
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="#"><span class="glyphicon glyphicon-user"></span> Invitar</a></li>
                             <li ng-click="DeleteParticipant()"><a href="#"><span class="glyphicon glyphicon-remove"></span> Salir</a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-fullscreen"></span> Pantalla completa</a></li>
+                            <li id="fullscreen" class="button"><a href="#"><span class="glyphicon glyphicon-fullscreen"></span> Pantalla completa</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-filter"></span> Filtro <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
@@ -89,7 +89,6 @@
             <ul class="list-inline">
                 <li ng-repeat="p in lista"> 
                     <div ng-switch="p.idParticipant">
-                        {{p.idParticipant}}
                         <div ng-switch-when="0">
                             <a id="carousel-selector-{{p.idParticipant}}" class="selected">
                                 <video class="small-video">
@@ -163,8 +162,10 @@
                                                             </div>
                                                         </div>-->
                             <div ng-repeat="p in lista" class="{{p.idParticipant === 0 && 'active item'||'item'}}" data-slide-number="{{p.idParticipant}}">
-                                <iframe width="100%" height="465px" src="http://www.youtube.com/v/QoQ1Xoo_rwk">
-                                </iframe>
+                                <video class="center-block big-video" id="video{{p.idParticipant}}">
+                                    <source src="#" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
                             </div>
 
 
@@ -194,6 +195,8 @@
                     </div>
                 </div>
             </div>
+
+
             <!--CHAT-->
             <div class="col col-md-3">
 
